@@ -1,0 +1,89 @@
+type UserId = principal;
+type UpdateConversationArgs = 
+ record {
+   conversationId: ConversationId;
+   model: opt AiModel;
+   title: opt text;
+ };
+type Timestamp = int;
+type SendMessageArgs = 
+ record {
+   attachments: vec Attachment;
+   content: text;
+   conversationId: ConversationId;
+ };
+type MessageRole = 
+ variant {
+   assistant;
+   system;
+   user;
+ };
+type MessageId = nat;
+type Message = 
+ record {
+   attachments: vec Attachment;
+   content: text;
+   conversationId: ConversationId;
+   createdAt: Timestamp;
+   id: MessageId;
+   model: opt AiModel;
+   role: MessageRole;
+ };
+type CreateConversationArgs = 
+ record {
+   model: AiModel;
+   title: text;
+ };
+type ConversationId = nat;
+type ConversationDetail = 
+ record {
+   createdAt: Timestamp;
+   id: ConversationId;
+   messages: vec Message;
+   model: AiModel;
+   title: text;
+   updatedAt: Timestamp;
+   userId: UserId;
+ };
+type Conversation = 
+ record {
+   createdAt: Timestamp;
+   id: ConversationId;
+   messageCount: nat;
+   model: AiModel;
+   title: text;
+   updatedAt: Timestamp;
+   userId: UserId;
+ };
+type AttachmentKind = 
+ variant {
+   generatedImage;
+   image;
+   pdf;
+   "text";
+ };
+type Attachment = 
+ record {
+   kind: AttachmentKind;
+   mimeType: text;
+   name: text;
+   storageId: text;
+ };
+type AiModel = 
+ variant {
+   claude;
+   deepseekV3;
+   gpt4o;
+   grok;
+ };
+service : {
+  appendAssistantMessage: (conversationId: ConversationId, content: text,
+   model: AiModel) -> (opt MessageId);
+  createConversation: (args: CreateConversationArgs) -> (Conversation);
+  deleteConversation: (conversationId: ConversationId) -> (bool);
+  getConversation: (conversationId: ConversationId) ->
+   (opt ConversationDetail) query;
+  listConversations: () -> (vec Conversation) query;
+  sendMessage: (args: SendMessageArgs) -> (opt MessageId);
+  updateConversation: (args: UpdateConversationArgs) -> (bool);
+}

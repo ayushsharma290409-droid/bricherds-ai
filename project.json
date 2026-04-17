@@ -1,0 +1,24 @@
+{
+  "overview": "Bricherds.ai is an all-in-one AI platform combining the best of ChatGPT, Claude, Grok, DeepSeek, and Perplexity. Chat with multiple AI models, generate and analyze images, summarize documents, and create code — all in one place with free access and persistent chat history.",
+  "features": [
+    "Multi-model AI chat (GPT-4o, Claude, DeepSeek, Grok)",
+    "Image generation from text prompts",
+    "Document and photo analysis with AI",
+    "Code generation with syntax highlighting",
+    "Login and signup with persistent chat history",
+    "Light theme with organized feature dashboard",
+    "Free API access — no key required",
+    "Mobile-responsive sidebar layout"
+  ],
+  "category": "productivity",
+  "tags": [
+    "ai",
+    "chat",
+    "image-generation",
+    "document-analysis",
+    "code-generation",
+    "multi-model",
+    "productivity"
+  ],
+  "last_updated": "2026-04-17T08:53:10.297Z"
+}
